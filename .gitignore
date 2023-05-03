@@ -13,7 +13,6 @@ media
 
 # production
 build/
-static/
 
 # testing
 .cache

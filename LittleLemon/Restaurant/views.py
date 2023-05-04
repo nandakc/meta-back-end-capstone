@@ -13,11 +13,6 @@ def default_permissions(self):
 
     return [permission() for permission in permission_classes]
 
-class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
-    serializer_class = serializers.UserSerializer
-    permission_classes = [permissions.IsAuthenticated]
-
 class MenuItemsView(generics.ListCreateAPIView):
     queryset = models.menu.objects.all()
     serializer_class = serializers.MenuSerializer

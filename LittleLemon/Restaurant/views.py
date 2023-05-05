@@ -7,10 +7,9 @@ def index(request):
     return render(request, 'index.html', {})
 
 def default_permissions(self):
-    permission_classes = []
-    if self.request.method != 'GET':
-        permission_classes = [permissions.IsAdminUser]
-
+    permission_classes = []          # anyone can see Menu items
+    if self.request.method != 'GET': # only authenticated users can add, edit or delete menu item(s)
+        permission_classes = [permissions.IsAuthenticated]
     return [permission() for permission in permission_classes]
 
 class MenuItemsView(generics.ListCreateAPIView):
@@ -29,3 +28,9 @@ class BookingViewSet(viewsets.ModelViewSet):
     queryset = models.Booking.objects.all()
     serializer_class = serializers.BookingSerializer
     permission_classes = [permissions.IsAuthenticated]
+    def get_permissions(self):
+        permission_classes = []           # anyone can create Booking
+        if self.request.method != 'POST': # only authenticated users can see, edit or delete a booking
+            permission_classes = [permissions.IsAuthenticated]
+        return [permission() for permission in permission_classes]
+

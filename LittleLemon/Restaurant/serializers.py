@@ -4,10 +4,10 @@ from . import models
 
 class MenuSerializer(serializers.ModelSerializer):
     class Meta:
-        model = models.menu
+        model = models.Menu
         fields = '__all__'
 
 class BookingSerializer(serializers.ModelSerializer):
     class Meta:
-        model = models.booking
+        model = models.Booking
         fields = '__all__'

@@ -14,18 +14,18 @@ def default_permissions(self):
     return [permission() for permission in permission_classes]
 
 class MenuItemsView(generics.ListCreateAPIView):
-    queryset = models.menu.objects.all()
+    queryset = models.Menu.objects.all()
     serializer_class = serializers.MenuSerializer
     def get_permissions(self):
         return default_permissions(self)
 
 class SingleMenuItemView(generics.RetrieveUpdateAPIView, generics.DestroyAPIView):
-    queryset = models.menu.objects.all()
+    queryset = models.Menu.objects.all()
     serializer_class = serializers.MenuSerializer
     def get_permissions(self):
         return default_permissions(self)
 
 class BookingViewSet(viewsets.ModelViewSet):
-    queryset = models.booking.objects.all()
+    queryset = models.Booking.objects.all()
     serializer_class = serializers.BookingSerializer
     permission_classes = [permissions.IsAuthenticated]
